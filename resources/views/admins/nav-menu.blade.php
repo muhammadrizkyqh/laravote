@@ -80,7 +80,7 @@
     <ul class="sidebar-nav" id="sidebar-nav">
 
         <li class="nav-item">
-            <a class="nav-link " href="index.html">
+            <a class="nav-link " href="{{ route('dasboard') }}">
                 <i class="bi bi-grid"></i>
                 <span>Dashboard</span>
             </a>
@@ -93,7 +93,7 @@
             </a>
             <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                 <li>
-                    <a href="forms-elements.html">
+                    <a href="{{ route('pemilih') }}">
                         <i class="bi bi-circle"></i><span>Data Pemilih</span>
                     </a>
                 </li>
@@ -106,7 +106,7 @@
             </a>
             <ul id="charts-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                 <li>
-                    <a href="charts-chartjs.html">
+                    <a href="{{ route('kandidat') }}">
                         <i class="bi bi-circle"></i><span>Data Kandidat</span>
                     </a>
                 </li>
