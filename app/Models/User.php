@@ -2,37 +2,49 @@
 
 namespace App\Models;
 
-use Illuminate\Contracts\Auth\Authenticatable;
-use Illuminate\Auth\Authenticatable as AuthenticatableTrait;
-use Illuminate\Database\Eloquent\Model;
+// use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
+use Laravel\Sanctum\HasApiTokens;
+use Spatie\Permission\Traits\HasRoles;
 
-
-class User extends Model implements Authenticatable
+class User extends Authenticatable
 {
-    use AuthenticatableTrait;
+    use HasApiTokens, HasFactory, Notifiable, HasRoles;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array<int, string>
-     */
-
+   
     protected $fillable = [
-        'nim',
-        'nama',
-        'role',
+        'name',
+        'email',
         'password',
-        'last_login_at',
+        'token',
+        'kelas_id',
+        'kandidat_id'
     ];
 
-
-    /**
-     * The attributes that should be hidden for serialization.
-     *
-     * @var array<int, string>
-     */
+    
     protected $hidden = [
         'password',
         'remember_token',
     ];
+
+   
+    protected $casts = [
+        'email_verified_at' => 'datetime',
+    ];
+
+    protected $appends = ['role_name'];
+
+    public function getRoleNameAttribute()
+    {
+        return $this->roles->pluck('name')[0];
+    }
+
+    public function Kelas()
+    {
+        return $this->belongsTo(Kelas::class,'kelas_id');
+    }
+
+    
 }

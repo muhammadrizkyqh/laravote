@@ -1,29 +1,25 @@
 <?php
 
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
+namespace App\Models;
 
-class Candidate extends Model
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+
+class Kandidat extends Model
 {
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array<int, string>
-     */
-    protected $fillable = [
-        'nama',
-        'nim',
-        'visi',
-        'misi',
-        'gambar',
-        'selected_by',
+    use HasFactory;
+    protected $guarded = [];
+    protected $appends = [
+        'photo_path'
     ];
 
-    /**
-     * Get the user that selected this candidate.
-     */
-    public function user(): BelongsTo
+    public function getPhotoPathAttribute()
     {
-        return $this->belongsTo(User::class, 'selected_by');
+        return asset('storage/' . $this->photo);
+    }
+
+    public function Pemilih()
+    {
+        return $this->hasMany(User::class);
     }
 }
