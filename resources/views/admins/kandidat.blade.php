@@ -10,7 +10,7 @@
     <main id="main" class="main">
 
         <div class="pagetitle">
-            <h1>Dashboard Pemilih</h1>
+            <h1>Dashboard Kandidat</h1>
             <nav>
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="index.html">Home</a></li>
